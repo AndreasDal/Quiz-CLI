@@ -1,36 +1,8 @@
-## 1) Starting point ###
 
-# answer = input("When was the first known use of the word 'quiz'? ")
-# if answer == "1781":
-#     print("Correct!")
-# else:
-#     print(f"The answer is 1781, not {answer!r}")
-
-# answer = input("Which built-in function can get information from the user? ")
-# if answer == "input":
-#     print("Correct!")
-# else:
-#     print(f"The answer is 'input', not {answer!r}")
-
-### 2) Use Lists and Tuples to Avoid Repetitive Code ###
-
-# QUESTIONS = [
-#     ("When was the first known use of the word 'quiz'", "1781"),
-#     ("Which built-in function can get information from the user", "input"),
-#     ("Which keyword do you use to loop over a given list of elements", "for"),
-# ]
-
-# for question, correct_answer in QUESTIONS:
-#     answer = input(f"{question}? ")
-#     if answer == correct_answer:
-#         print("Correct!")
-#     else:
-#         print(f"The answer is {correct_answer!r}, not {answer!r}")
-
-### 3) Provide Multiple Choices ###
-
+import random
 from string import ascii_lowercase
 
+NUM_QUESTIONS_PER_QUIZ = 5
 QUESTIONS = {
     "When was the first known use of the word 'quiz'": ["1781", "1771", "1871", "1881"],
     "Which built-in function can get information from the user": [
@@ -65,33 +37,27 @@ QUESTIONS = {
     ],
 }
 
-# for question, alternatives in QUESTIONS.items():
-#     correct_answer = alternatives[0]  # antager at det rigtige svar er det første i listen.
-#     sorted_answer = sorted(alternatives)
-#     for label, alternative in enumerate(sorted_answer):
-#         print(f"   - {label}) {alternative}")
-
-#     answer_label = int(input(f"{question}? "))
-#     answer = sorted_answer[answer_label]
-#     if answer == correct_answer:
-#         print("Correct!")
-#     else:
-#         print(f"The answer is {correct_answer!r}, not {answer!r}")
+num_questions = min(NUM_QUESTIONS_PER_QUIZ, len(QUESTIONS))
+question = random.sample(list(QUESTIONS.items()), k=num_questions)
 
 num_correct = 0  # tæller antal korekte svar.
-
-for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
+for num, (question, alternatives) in enumerate(question, start=1):
     print(f"\nQuestion: {num}:")
     print(f"{question}?")
-    correct_answer = alternatives[
-        0
-    ]  # antager at det rigtige svar er det første i listen.
-    labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
+    correct_answer = alternatives[0]  # antager at det rigtige svar er det første i listen.
+    # labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
+    labeled_alternatives = dict(
+        zip(ascii_lowercase, random.sample(alternatives, k=len(alternatives)))
+    )
     for label, alternative in labeled_alternatives.items():
         print(f"   {label}) {alternative} ")
 
-    answer_label = input("\nChoice (write the letter)? ")
-    answer = labeled_alternatives.get(answer_label)
+    # answer_label = input("\nChoice (write the letter)? ")
+    choice_text = "\nChoice (specify the letter)? "
+    while (answer_label := input(choice_text)) not in labeled_alternatives:
+        print(f"Please answer one of {', '.join(labeled_alternatives)}")
+    # answer = labeled_alternatives.get(answer_label)
+    answer = labeled_alternatives[answer_label]
 
     if answer == correct_answer:
         num_correct += 1
@@ -99,6 +65,6 @@ for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
     else:
         print("❗Wrong❗")
         print(f"The answer is {correct_answer!r}, \n(Your answer: {answer!r})")
-    go_to_next = input("\nPush any button to go to the next question.")
+    go_to_next = input("\nPush 'Enter' button to go to the next question.")
 
 print(f"\nYou got {num_correct} out of {num} questions.")
