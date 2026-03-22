@@ -52,11 +52,17 @@ QUESTIONS = {
         "To get information from the user",
     ],
     "What's the name of Python's sorting algorithm": [
-        "Timsort", "Quicksort", "Merge sort", "Bubble sort"
+        "Timsort",
+        "Quicksort",
+        "Merge sort",
+        "Bubble sort",
     ],
     "What does dict.get(key) return if key isn't found in dict": [
-        "None", "key", "True", "False",
-    ]
+        "None",
+        "key",
+        "True",
+        "False",
+    ],
 }
 
 # for question, alternatives in QUESTIONS.items():
@@ -72,18 +78,27 @@ QUESTIONS = {
 #     else:
 #         print(f"The answer is {correct_answer!r}, not {answer!r}")
 
+num_correct = 0  # tæller antal korekte svar.
+
 for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
     print(f"\nQuestion: {num}:")
     print(f"{question}?")
-    correct_answer = alternatives[0]  # antager at det rigtige svar er det første i listen.
+    correct_answer = alternatives[
+        0
+    ]  # antager at det rigtige svar er det første i listen.
     labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
     for label, alternative in labeled_alternatives.items():
         print(f"   {label}) {alternative} ")
-        
-    answer_label = input("\nChoice? ")
+
+    answer_label = input("\nChoice (write the letter)? ")
     answer = labeled_alternatives.get(answer_label)
-    
+
     if answer == correct_answer:
-        print("⭐ Correct! ⭐")
+        num_correct += 1
+        print(f"⭐ Correct ⭐\nThe answer is {correct_answer!r}.")
     else:
-        print(f"The answer is {correct_answer!r}, not {answer!r}")
+        print("❗Wrong❗")
+        print(f"The answer is {correct_answer!r}, \n(Your answer: {answer!r})")
+    go_to_next = input("\nPush any button to go to the next question.")
+
+print(f"\nYou got {num_correct} out of {num} questions.")
