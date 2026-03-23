@@ -1,3 +1,4 @@
+
 import random
 from string import ascii_lowercase
 
@@ -36,61 +37,34 @@ QUESTIONS = {
     ],
 }
 
+num_questions = min(NUM_QUESTIONS_PER_QUIZ, len(QUESTIONS))
+question = random.sample(list(QUESTIONS.items()), k=num_questions)
 
-def run_quiz():
-    questions = prepare_questions(
-        QUESTIONS, num_questions=NUM_QUESTIONS_PER_QUIZ
+num_correct = 0  # tæller antal korekte svar.
+for num, (question, alternatives) in enumerate(question, start=1):
+    print(f"\nQuestion: {num}:")
+    print(f"{question}?")
+    correct_answer = alternatives[0]  # antager at det rigtige svar er det første i listen.
+    # labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
+    labeled_alternatives = dict(
+        zip(ascii_lowercase, random.sample(alternatives, k=len(alternatives)))
     )
-
-    num_correct = 0
-    for num, (question, alternatives) in enumerate(questions, start=1):
-        print(f"\n*** Question {num} ***")
-        num_correct += ask_question(question, alternatives)
-
-    print(f"\nYou got {num_correct} out of {num} questions.")
-
-
-# preprocessing
-def prepare_questions(questions, num_questions):
-    num_questions = min(num_questions, len(questions))
-    return random.sample(list(questions.items()), k=num_questions)
-
-
-def ask_question(question, alternatives):
-    correct_answer = alternatives[0]
-    ordered_alternatives = random.sample(alternatives, k=len(alternatives))
-
-    answer = get_answer(question, ordered_alternatives)
-    point = validate_answer(correct_answer, answer)
-
-    input("\nPush 'Enter' button to go to the next question.")
-    return point
-
-
-def get_answer(question, alternatives):
-    print(f"{question}? ")
-    labeled_alternatives = dict(zip(ascii_lowercase, alternatives))
     for label, alternative in labeled_alternatives.items():
-        print(f"   {label}) {alternative}")
+        print(f"   {label}) {alternative} ")
 
-    while (
-        answer_label := input("\nChoice (enter a label)? ")
-    ) not in labeled_alternatives:
+    # answer_label = input("\nChoice (write the letter)? ")
+    choice_text = "\nChoice (specify the letter)? "
+    while (answer_label := input(choice_text)) not in labeled_alternatives:
         print(f"Please answer one of {', '.join(labeled_alternatives)}")
+    # answer = labeled_alternatives.get(answer_label)
+    answer = labeled_alternatives[answer_label]
 
-    return labeled_alternatives[answer_label]
-
-
-def validate_answer(correct_answer, answer):
     if answer == correct_answer:
+        num_correct += 1
         print(f"⭐ Correct ⭐\nThe answer is {correct_answer!r}.")
-        point = 1
     else:
         print("❗Wrong❗")
         print(f"The answer is {correct_answer!r}, \n(Your answer: {answer!r})")
-        point = 0
-    return point
+    input("\nPush 'Enter' button to go to the next question.")
 
-
-if __name__ == "__main__":
-    run_quiz()
+print(f"\nYou got {num_correct} out of {num} questions.")
