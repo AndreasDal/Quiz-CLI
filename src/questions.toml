@@ -1,27 +1,32 @@
-"When does __name__ == '__main__' equal True in a Python file" = [
-    "When the file is run as a script",
+[[questions]]
+question = "When does __name__ == '__main__' equal True in a Python file"
+answer = "When the file is run as a script"
+alternatives = [
     "When the file is imported as a module",
     "When the file has a valid name",
-    "When the file only has one function",
+    "When the file only has one function"
 ]
 
-"Which version of Python is the first with TOML support built in" = [
-    "3.11", "3.9", "3.10", "3.12"
+[[questions]]
+question = "Which version of Python is the first with TOML support built in"
+answer = "3.11"
+alternatives = ["3.9", "3.10", "3.12"]
+
+[[questions]]
+question = "When was the first known use of the word 'quiz'"
+answer = "1781"
+alternatives = ["1771", "1871", "1881"]
+
+[[questions]]
+question = "Which built-in function can get information from the user"
+answer = "input"
+alternatives = ["get", "print", "write",
 ]
 
-"When was the first known use of the word 'quiz'" = [
-   "1781", "1771", "1871", "1881"
-]
-
-"Which built-in function can get information from the user"= [
-   "input",
-   "get",
-   "print",
-   "write",
-]
-
-"Which keyword do you use to loop over a given list of elements" = [
-   "for",
+[[questions]]
+question = "Which keyword do you use to loop over a given list of elements"
+answer = "for"
+alternatives = [
    "while",
    "each",
    "loop",
