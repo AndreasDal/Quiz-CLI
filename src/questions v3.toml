@@ -1,0 +1,46 @@
+[[questions]]
+question = "How can you run a Python script named quiz.py"
+answers = ["python quiz.py", "python -m quiz"]
+alternatives = ["python quiz", "python -m quiz.py"]
+hint = "one includes -m"
+
+[[questions]]
+question = "When does __name__ == '__main__' equal True in a Python file"
+answers = ["When the file is run as a script"]
+alternatives = [
+    "When the file is imported as a module",
+    "When the file has a valid name",
+    "When the file only has one function"
+]
+explanation = """
+   When the file is run as a script the file is acting as the main module
+    whereas when the file is imported it is acting as its name, i.e. 
+    __name__ = <name of the module>. This can be exploited to only run main 
+    parts of the module code when the file is run as a script, e.g. when testing
+    the module. 
+"""
+
+[[questions]]
+question = "What's a PEP"
+answers = ["A Python Enhancement Proposal"]
+alternatives = [
+    "A Pretty Exciting Policy",
+    "A Preciously Evolved Python",
+    "A Potentially Epic Prize",
+    ]
+hint = "PEPs are used to evolve Python."
+explanation = """
+    Python Enhancement Proposals (PEPs) are design documents that provide
+    information to the Python community. PEPs are used to propose new features
+    for the Python language, to collect community input on an issue, and to
+    document design decisions made about the language.
+"""
+
+[[questions]]
+question = "question tekst goes here .."
+answers = [one or more answers goes here ..]
+alternatives = [one of more alternative (wrong) answers goes here ..]
+hint = "an optional hint for the correts answer(s) goes here .."
+explanation = """
+    A multiline explanation or detailed answer goes here .. it should be max 5 lines
+"""

@@ -1,0 +1,121 @@
+[[questions]]
+question = "What was Michael Jackson’s nickname?"
+answers = ["King of Pop"]
+alternatives = ["Prince of Pop", "Emperor of Music", "Lord of Dance"]
+hint = "He was widely regarded as the most influential pop artist ever."
+explanation = """
+    Michael Jackson was famously known as the "King of Pop".
+    The title reflects his massive influence on the music industry.
+    He earned it through record-breaking albums and global impact.
+"""
+
+[[questions]]
+question = "Which album by Michael Jackson is the best-selling album of all time?"
+answers = ["Thriller"]
+alternatives = ["Bad", "Dangerous", "Off the Wall"]
+hint = "Released in 1982 and featured iconic hits like 'Billie Jean'."
+explanation = """
+    "Thriller" is the best-selling album in history.
+    It includes hits like "Beat It" and "Billie Jean".
+    The album revolutionized music videos and pop culture.
+"""
+
+[[questions]]
+question = "Which of the following songs are from Michael Jackson’s album 'Thriller'?"
+answers = ["Billie Jean", "Beat It"]
+alternatives = ["Smooth Criminal", "Black or White", "Bad", "Dirty Diana"]
+hint = "Think of the biggest hits from his 1982 album."
+explanation = """
+    "Billie Jean" and "Beat It" are both from the album "Thriller".
+    The other options are from different albums.
+    "Thriller" is the best-selling album of all time.
+"""
+
+[[questions]]
+question = "What dance move is Michael Jackson famous for popularizing?"
+answers = ["Moonwalk"]
+alternatives = ["Robot", "Breakdance", "Twist"]
+hint = "He debuted it during a performance of 'Billie Jean'."
+explanation = """
+    The Moonwalk became Michael Jackson's signature move.
+    It creates the illusion of gliding backwards.
+    He first performed it publicly in 1983.
+"""
+
+
+[[questions]]
+question = "Which of the following albums were released by Michael Jackson in the 1980s?"
+answers = ["Thriller", "Bad"]
+alternatives = ["Dangerous", "HIStory", "Invincible"]
+hint = "Focus on albums released between 1980 and 1989."
+explanation = """
+    "Thriller" (1982) and "Bad" (1987) were released in the 1980s.
+    The other albums came out in the 1990s or later.
+    These two albums were among his most successful.
+"""
+
+[[questions]]
+question = "What was the name of Michael Jackson’s famous ranch?"
+answers = ["Neverland Ranch"]
+alternatives = ["Wonderland Estate", "Dreamland Ranch", "Fantasy Valley"]
+hint = "It shares its name with a place from Peter Pan."
+explanation = """
+    Neverland Ranch was Michael Jackson’s home in California.
+    It included amusement park rides and a zoo.
+    The name was inspired by the story of Peter Pan.
+"""
+
+[[questions]]
+question = "Which group was Michael Jackson a member of before his solo career?"
+answers = ["The Jackson 5", "Jackson 5"]
+alternatives = ["The Temptations", "The Supremes", "New Edition"]
+hint = "It was a family group formed with his brothers."
+explanation = """
+    Michael Jackson started in The Jackson 5 with his brothers.
+    The group was formed in the late 1960s.
+    They had hits like "I Want You Back".
+"""
+
+[[questions]]
+question = "What is the name of Michael Jackson’s hit song featuring a famous anti-gravity lean in its video?"
+answers = ["Smooth Criminal"]
+alternatives = ["Beat It", "Black or White", "Remember the Time"]
+hint = "The song is part of the 'Bad' album."
+explanation = """
+    "Smooth Criminal" is known for its iconic anti-gravity lean.
+    The effect was achieved using special shoes and stage design.
+    It became one of his most memorable performances.
+"""
+
+[[questions]]
+question = "Which famous music video by Michael Jackson features zombies dancing?"
+answers = ["Thriller"]
+alternatives = ["Ghosts", "Bad", "Dangerous"]
+hint = "It is often considered the most famous music video ever."
+explanation = """
+    The "Thriller" music video features a zombie dance sequence.
+    It was directed by John Landis.
+    It set a new standard for storytelling in music videos.
+"""
+
+[[questions]]
+question = "Which award did Michael Jackson win the most of during his career?"
+answers = ["Grammy Awards", "Grammys"]
+alternatives = ["Oscars", "Golden Globes", "Emmys"]
+hint = "These awards honor achievements in music."
+explanation = """
+    Michael Jackson won multiple Grammy Awards.
+    He won a record-breaking number in a single night for "Thriller".
+    These awards recognize excellence in the music industry.
+"""
+
+[[questions]]
+question = "What instrument did Michael Jackson primarily play?"
+answers = ["Vocals", "Voice"]
+alternatives = ["Guitar", "Piano", "Drums"]
+hint = "He was most famous for singing rather than playing instruments."
+explanation = """
+    Michael Jackson was primarily a vocalist.
+    His voice and performance style defined his career.
+    He was not mainly known as an instrumentalist.
+"""

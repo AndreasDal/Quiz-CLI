@@ -1,0 +1,54 @@
+[[questions]]
+question = "Which of the following characters are part of the Scott family in 'One Tree Hill'?"
+answers = ["Lucas Scott", "Nathan Scott"]
+alternatives = ["Jake Jagielski", "Chris Keller", "Felix Taggaro"]
+hint = "They share the same last name and are half-brothers."
+explanation = """
+    Lucas and Nathan Scott are central characters in the series.
+    They are half-brothers and part of the Scott family.
+    Much of the show's drama revolves around their relationship.
+"""
+
+[[questions]]
+question = "Which of the following characters are best friends with Lucas Scott?"
+answers = ["Haley James", "Peyton Sawyer"]
+alternatives = ["Brooke Davis", "Rachel Gatina", "Dan Scott"]
+hint = "Think of his closest friendships in the early seasons."
+explanation = """
+    Haley and Peyton are Lucas's closest friends early in the show.
+    Haley is his longtime best friend.
+    Peyton becomes a close confidant as well.
+"""
+
+[[questions]]
+question = "Which of the following locations are key recurring settings in 'One Tree Hill'?"
+answers = ["Tree Hill High School", "Karen’s Cafe"]
+alternatives = ["Central Perk", "The Peach Pit", "Luke’s Diner"]
+hint = "One is a school and the other is Lucas's mom’s workplace."
+explanation = """
+    Tree Hill High School is where much of the early story takes place.
+    Karen’s Cafe is run by Lucas’s mother.
+    Both are central locations throughout the series.
+"""
+
+[[questions]]
+question = "Which of the following relationships become romantic couples in 'One Tree Hill'?"
+answers = ["Nathan Scott & Haley James", "Lucas Scott & Peyton Sawyer"]
+alternatives = ["Dan Scott & Brooke Davis", "Nathan Scott & Rachel Gatina", "Lucas Scott & Deb Scott"]
+hint = "Focus on the show's main long-term couples."
+explanation = """
+    Nathan and Haley form one of the show's core couples.
+    Lucas and Peyton also have a central romantic storyline.
+    These relationships develop over multiple seasons.
+"""
+
+[[questions]]
+question = "Which of the following characters are members of the Tree Hill Ravens basketball team?"
+answers = ["Nathan Scott", "Lucas Scott"]
+alternatives = ["Mouth McFadden", "Skills Taylor", "Jamie Scott"]
+hint = "Think of the main players on the high school team."
+explanation = """
+    Nathan and Lucas both play for the Tree Hill Ravens.
+    Basketball is a major theme in the early seasons.
+    Their rivalry and teamwork drive much of the plot.
+"""
