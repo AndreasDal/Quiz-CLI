@@ -1,0 +1,25 @@
+[capitals]
+label = "Capitals"
+
+[[capitals.questions]]
+question = "What's the capital of Norway"
+answers = ["Oslo"]
+hint = "Lars Onsager, Jens Stoltenberg, Trygve Lie, and Børge Ousland."
+alternatives = ["Stockholm", "Copenhagen", "Helsinki", "Reykjavik"]
+explanation = """
+    Oslo was founded as a city in the 11th century and established as a
+    trading place. It became the capital of Norway in 1299. The city was
+    destroyed by a fire in 1624 and rebuilt as Christiania, named in honor
+    of the reigning king. The city was renamed back to Oslo in 1925.
+"""
+
+[[capitals.questions]]
+question = "What's the state capital of Texas, USA"
+answers = ["Austin"]
+alternatives = ["Harrisburg", "Houston", "Galveston", "Columbia"]
+hint = "SciPy is held there each year."
+explanation = """
+    Austin is named in honor of Stephen F. Austin. It was purpose-built to
+    be the capital of Texas and was incorporated in December 1839. Houston,
+    Harrisburg, Columbia, and Galveston are all earlier capitals of Texas.
+"""

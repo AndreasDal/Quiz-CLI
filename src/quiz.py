@@ -8,12 +8,11 @@ except ModuleNotFoundError:
     import tomli as tomllib
 
 NUM_QUESTIONS_PER_QUIZ = 5
-QUESTIONS_PATH = pathlib.Path(__file__).parent / "questions.toml"
-# QUESTIONS = tomllib.loads(QUESTIONS_PATH.read_text())
+QUESTIONS_DIR = pathlib.Path(__file__).parent / "questions"  # New: Directory for question files
 
 
 def run_quiz():
-    questions = prepare_questions(QUESTIONS_PATH, num_questions=NUM_QUESTIONS_PER_QUIZ)
+    questions = prepare_questions(QUESTIONS_DIR, num_questions=NUM_QUESTIONS_PER_QUIZ)
 
     num_correct = 0
     for num, question in enumerate(questions, start=1):
@@ -24,14 +23,19 @@ def run_quiz():
 
 
 # preprocessing
-def prepare_questions(path, num_questions):
-    # questions = tomllib.loads(path.read_text())["questions"]
-    topic_info = tomllib.loads(path.read_text())
-    topics = {
-        topic["label"]: topic["questions"] for topic in topic_info.values()
-    }
+def prepare_questions(questions_dir, num_questions):
+    topics = {}
+    for toml_file in questions_dir.glob("*.toml"):
+        topic_info = tomllib.loads(toml_file.read_text())
+        # Assume each file has one top-level section (e.g., [beverly_hills_90210])
+        for topic_key, topic_data in topic_info.items():
+            topics[topic_data["label"]] = topic_data["questions"]
+    
+    if not topics:
+        raise ValueError(f"No question files found in {questions_dir}")
+    
     topic_label = get_answers(
-        "Which topic do you want to get quized about?",
+        "Which topic do you want to get quizzed about?",
         alternatives=sorted(topics),
     )[0]
     questions = topics[topic_label]
