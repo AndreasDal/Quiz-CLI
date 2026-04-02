@@ -1,109 +1,62 @@
-[[questions]]
-question = "Which of the following characters are part of the Walsh family in 'Beverly Hills 90210' (seasons 1–3)?"
-answers = ["Brandon Walsh", "Brenda Walsh"]
-alternatives = ["Steve Sanders", "Dylan McKay", "David Silver"]
-hint = "They are twins who move from Minnesota to Beverly Hills."
+[python]
+label = "Python"
+
+[[python.questions]]
+question = "How can you add a docstring to a function"
+answers = [
+    "By writing a string literal as the first statement in the function",
+    "By assigning a string to the function's .__doc__ attribute",
+]
+alternatives = [
+    "By using the built-in @docstring decorator",
+    "By returning a string from the function",
+]
+hint = "They're parsed from your code and stored on the function object."
 explanation = """
-    Brandon and Brenda Walsh are the central siblings in early seasons.
-    They move to Beverly Hills with their parents.
-    Their perspective introduces the audience to the group.
+    Docstrings document functions and other Python objects. A docstring is a
+    string literal that occurs as the first statement in a module, function,
+    class, or method definition. Such a docstring becomes the .__doc__ special
+    attribute of that object. See PEP 257 for more information.
+
+    There's no built-in @docstring decorator. Many functions naturally return
+    strings. Such a feature can therefore not be used for docstrings.
 """
 
-[[questions]]
-question = "Who is known as the wealthy, rebellious loner in seasons 1–3?"
-answers = ["Dylan McKay"]
-alternatives = ["Brandon Walsh", "Steve Sanders", "David Silver"]
-hint = "He often rides a motorcycle and lives in a hotel."
+[[python.questions]]
+question = "When was the first public version of Python released?"
+answers = ["February 1991"]
+alternatives = ["January 1994", "October 2000", "December 2008"]
+hint = "The first public version was labeled version 0.9.0."
 explanation = """
-    Dylan McKay is portrayed as a troubled rich teenager.
-    He lives independently and struggles with family issues.
-    His character becomes central early in the series.
+    Guido van Rossum started work on Python in December 1989. He posted
+    Python v0.9.0 to the alt.sources newsgroup in February 1991. Python
+    reached version 1.0.0 in January 1994. The next major versions,
+    Python 2.0 and Python 3.0, were released in October 2000 and December
+    2008, respectively.
 """
 
-[[questions]]
-question = "Which of the following characters attend West Beverly High in seasons 1–3?"
-answers = ["Kelly Taylor", "Donna Martin"]
-alternatives = ["Jack McKay", "Jim Walsh", "Nat Bussichio"]
-hint = "They are part of the main teenage friend group."
+[capitals]
+label = "Capitals"
+
+[[capitals.questions]]
+question = "What's the capital of Norway"
+answers = ["Oslo"]
+hint = "Lars Onsager, Jens Stoltenberg, Trygve Lie, and Børge Ousland."
+alternatives = ["Stockholm", "Copenhagen", "Helsinki", "Reykjavik"]
 explanation = """
-    Kelly and Donna are both students at West Beverly High.
-    They are close friends and part of the core group.
-    The show focuses heavily on their school lives.
+    Oslo was founded as a city in the 11th century and established as a
+    trading place. It became the capital of Norway in 1299. The city was
+    destroyed by a fire in 1624 and rebuilt as Christiania, named in honor
+    of the reigning king. The city was renamed back to Oslo in 1925.
 """
 
-[[questions]]
-question = "Who is Brenda Walsh’s main love interest in the early seasons?"
-answers = ["Dylan McKay"]
-alternatives = ["Steve Sanders", "David Silver", "Brandon Walsh"]
-hint = "Their relationship is a major storyline in season 1."
+[[capitals.questions]]
+question = "What's the state capital of Texas, USA"
+answers = ["Austin"]
+alternatives = ["Harrisburg", "Houston", "Galveston", "Columbia"]
+hint = "SciPy is held there each year."
 explanation = """
-    Brenda and Dylan have a central romantic relationship.
-    Their ups and downs drive much of the early drama.
-    It is one of the show's most iconic couples.
-"""
-
-[[questions]]
-question = "Which of the following characters are part of the main friend group in seasons 1–3?"
-answers = ["Steve Sanders", "Andrea Zuckerman"]
-alternatives = ["Jim Walsh", "Cindy Walsh", "Jack McKay"]
-hint = "They are teenagers attending the same high school."
-explanation = """
-    Steve and Andrea are core members of the group.
-    They attend West Beverly High with the others.
-    Their storylines develop across the early seasons.
-"""
-
-[[questions]]
-question = "Who works at the Peach Pit diner in seasons 1–3?"
-answers = ["Brandon Walsh"]
-alternatives = ["Dylan McKay", "Steve Sanders", "David Silver"]
-hint = "He takes a job there early in the series."
-explanation = """
-    Brandon Walsh works at the Peach Pit.
-    The diner becomes a central hangout spot.
-    It is owned by Nat Bussichio.
-"""
-
-[[questions]]
-question = "Which of the following characters are romantically involved with Dylan McKay in seasons 1–3?"
-answers = ["Brenda Walsh", "Kelly Taylor"]
-alternatives = ["Donna Martin", "Andrea Zuckerman", "Cindy Walsh"]
-hint = "There is a famous love triangle."
-explanation = """
-    Dylan is involved with both Brenda and Kelly.
-    This creates one of the show's biggest love triangles.
-    It becomes a defining storyline of early seasons.
-"""
-
-[[questions]]
-question = "Who is known for being the editor of the school newspaper?"
-answers = ["Andrea Zuckerman"]
-alternatives = ["Kelly Taylor", "Donna Martin", "Brenda Walsh"]
-hint = "She is academically driven and very dedicated."
-explanation = """
-    Andrea Zuckerman is the editor of the Blaze.
-    She is highly intelligent and ambitious.
-    Her academic focus sets her apart from others.
-"""
-
-[[questions]]
-question = "Which of the following characters are part of the Walsh parents in seasons 1–3?"
-answers = ["Jim Walsh", "Cindy Walsh"]
-alternatives = ["Jack McKay", "Samantha Sanders", "Mel Silver"]
-hint = "They move with their children to Beverly Hills."
-explanation = """
-    Jim and Cindy Walsh are Brandon and Brenda’s parents.
-    They provide a moral center in the show.
-    Their family dynamic contrasts with Beverly Hills culture.
-"""
-
-[[questions]]
-question = "Who is Donna Martin’s best friend in the early seasons?"
-answers = ["Kelly Taylor"]
-alternatives = ["Andrea Zuckerman", "Brenda Walsh", "Brandon Walsh"]
-hint = "They are often seen together socially and at school."
-explanation = """
-    Kelly Taylor is Donna’s closest friend.
-    Their friendship is a consistent element in early seasons.
-    They are part of the main female group.
+    Austin is named in honor of Stephen F. Austin. It was purpose-built to
+    be the capital of Texas and was incorporated in December 1839. Houston,
+    Harrisburg, Columbia, and Galveston are all earlier capitals of Texas.
 """
