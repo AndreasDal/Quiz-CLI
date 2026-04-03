@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 import pathlib
 from string import ascii_lowercase
@@ -18,6 +19,7 @@ def run_quiz():
     for num, question in enumerate(questions, start=1):
         print(f"\n*** Question {num} ***")
         num_correct += ask_question(question)
+        print(f"You have {num_correct} correct answers.")
 
     print(f"\nYou got {num_correct} out of {num} questions.")
 
@@ -26,9 +28,10 @@ def run_quiz():
 def prepare_questions(questions_dir, num_questions):
     topics = {}
     for toml_file in questions_dir.glob("*.toml"):
-        topic_info = tomllib.loads(toml_file.read_text())
+        topic_info = tomllib.loads(toml_file.read_text(encoding="utf-8"))
         # Assume each file has one top-level section (e.g., [beverly_hills_90210])
-        for topic_key, topic_data in topic_info.items():
+        # for topic_key, topic_data in topic_info.items():
+        for topic_data in topic_info.values():
             topics[topic_data["label"]] = topic_data["questions"]
     
     if not topics:
@@ -40,11 +43,18 @@ def prepare_questions(questions_dir, num_questions):
     )[0]
     questions = topics[topic_label]
     num_questions = min(num_questions, len(questions))
+    chosen_quiz_presentation(topic_label, num_questions)
     return random.sample(questions, k=num_questions)
 
 
+def chosen_quiz_presentation(topic, num_questions):
+    print("\n******************************************************************")
+    print(f"  Ok, you have chosen to be quized in topic: \n  {topic!r}")
+    print(f"  The quiz have {num_questions} questions. Are you ready? ")
+    print("********************************************************************")
+    input("\n  Push 'Enter' button to go to the next question.")
+
 def ask_question(question):
-    # correct_answer = alternatives[0]
     correct_answers = question["answers"]
     alternatives = question["answers"] + question["alternatives"]
     ordered_alternatives = random.sample(alternatives, k=len(alternatives))
@@ -100,22 +110,22 @@ def get_answers(question, alternatives, num_choices=1, hint=None):
 
 
 def validate_answers(correct_answers, answers):
-    # if set(answers) == set(correct_answers):
-    if correct := (set(answers) == set(correct_answers)):
-        # print(f"⭐ Correct ⭐\nThe answer is {correct_answers!r}.")
+    # Keep a running total of points across calls using function attribute
+    if not hasattr(validate_answers, "total_points"):
+        validate_answers.total_points = 0
+
+    correct = set(answers) == set(correct_answers)
+    if correct:
         print("\n⭐ Correct ⭐")
-        # point = 1
+        validate_answers.total_points += 1
     else:
-        # is_or_are = " is" if len(correct_answers) == 1 else "s are"
         print("\n❗Wrong❗")
-        # print("\n- ".join(f"No, the answer{is_or_are} {correct_answers!r}, \n(Your answer: {answers!r})")
-        # print("\n- ".join([f"No, the answer{is_or_are}:"] + correct_answers))
-        # point = 0
 
     is_or_are = " is" if len(correct_answers) == 1 else "s are"
     print("\n- ".join([f"The answer{is_or_are}:"] + correct_answers))
-    # return point
-    return 1 if correct else 0
+
+    # return cumulative points, not just 0/1
+    return validate_answers.total_points
 
 
 if __name__ == "__main__":

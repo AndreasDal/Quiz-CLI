@@ -1,0 +1,112 @@
+[linear_funktions]
+label = "Lineære funktioner (8. klasse)"
+
+[[linear_funktions.questions]]
+question = "Hvilke af følgende funktioner er lineære funktioner?"
+answers = ["f(x)=2x+3", "g(x)=-x+5"]
+alternatives = ["h(x)=x^2+1", "k(x)=1/x", "m(x)=x^3"]
+hint = "En lineær funktion har formen ax + b."
+explanation = """
+    Lineære funktioner har formen f(x)=ax+b.
+    Her indgår kun x i første potens.
+    Derfor er 2x+3 og -x+5 lineære funktioner.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvad kaldes tallet 'a' i en lineær funktion f(x)=ax+b?"
+answers = ["Hældningskoefficient"]
+alternatives = ["Konstantled", "Skæring", "Startværdi"]
+hint = "Det fortæller hvor stejl grafen er."
+explanation = """
+    Tallet a kaldes hældningskoefficienten.
+    Det viser hvor meget y ændrer sig når x øges med 1.
+    Jo større a, jo stejlere graf.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvad er konstantleddet i funktionen f(x)=3x+7?"
+answers = ["7"]
+alternatives = ["3", "10", "0"]
+hint = "Det er tallet uden x."
+explanation = """
+    Konstantleddet er tallet uden x.
+    I f(x)=3x+7 er det 7.
+    Det viser hvor grafen skærer y-aksen.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvilke af følgende funktioner har en negativ hældning?"
+answers = ["f(x)=-2x+4", "g(x)=-0,5x+1"]
+alternatives = ["h(x)=2x+3", "k(x)=0,3x-2", "m(x)=5"]
+hint = "Negativ hældning betyder at grafen falder."
+explanation = """
+    Når a er negativ, falder grafen.
+    -2x+4 og -0,5x+1 har negative a-værdier.
+    Derfor er de aftagende funktioner.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvad er værdien af f(2) for funktionen f(x)=2x+1?"
+answers = ["5"]
+alternatives = ["3", "4", "6"]
+hint = "Indsæt x=2 i funktionen."
+explanation = """
+    Vi indsætter x=2: f(2)=2·2+1.
+    Det giver 4+1=5.
+    Derfor er svaret 5.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvilke af følgende punkter ligger på grafen for f(x)=x+2?"
+answers = ["(0,2)", "(2,4)"]
+alternatives = ["(1,1)", "(2,2)", "(3,3)"]
+hint = "Indsæt x-værdien og se om y passer."
+explanation = """
+    For x=0 får vi y=2 → (0,2).
+    For x=2 får vi y=4 → (2,4).
+    De andre punkter passer ikke til reglen.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvad sker der med grafen, når hældningskoefficienten bliver større?"
+answers = ["Grafen bliver stejlere"]
+alternatives = ["Grafen flytter ned", "Grafen bliver fladere", "Grafen vender om"]
+hint = "Tænk på hvor hurtigt y vokser."
+explanation = """
+    En større hældning betyder større stigning.
+    Grafen vokser hurtigere.
+    Derfor bliver grafen stejlere.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvilke af følgende funktioner skærer y-aksen i 0?"
+answers = ["f(x)=2x", "g(x)=-3x"]
+alternatives = ["h(x)=x+1", "k(x)=2x+5", "m(x)=x-4"]
+hint = "Det sker når b=0."
+explanation = """
+    Hvis b=0, går grafen gennem (0,0).
+    Det gælder for 2x og -3x.
+    De andre har et konstantled forskelligt fra 0.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvad er hældningen for funktionen f(x)=0,5x+2?"
+answers = ["0,5"]
+alternatives = ["2", "1", "-0,5"]
+hint = "Det er tallet foran x."
+explanation = """
+    Hældningen er koefficienten foran x.
+    Her er det 0,5.
+    Det betyder at y stiger med 0,5 for hver x.
+"""
+
+[[linear_funktions.questions]]
+question = "Hvilke af følgende beskrivelser passer på en lineær funktion?"
+answers = ["Grafen er en ret linje", "Den har konstant hældning"]
+alternatives = ["Grafen er en parabel", "Hældningen ændrer sig", "Den har toppunkt"]
+hint = "Tænk på hvordan grafen ser ud."
+explanation = """
+    En lineær funktion danner en ret linje.
+    Hældningen er den samme hele tiden.
+    Derfor ændrer grafen ikke form.
+"""

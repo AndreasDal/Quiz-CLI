@@ -1,0 +1,112 @@
+[bridgit_jones]
+label = "Bridget Jones Diary (Films 1–2)"
+
+[[bridgit_jones.questions]]
+question = "Which of the following characters are Bridget Jones’s main love interests in the first two films?"
+answers = ["Mark Darcy", "Daniel Cleaver"]
+alternatives = ["Jack Qwant", "Tom", "Richard Finch"]
+hint = "One is serious and reserved, the other is charming but unreliable."
+explanation = """
+    Mark Darcy and Daniel Cleaver form the central love triangle.
+    Their rivalry drives much of the plot in both films.
+    Bridget is torn between stability and excitement.
+"""
+
+[[bridgit_jones.questions]]
+question = "Who plays Bridget Jones in the films?"
+answers = ["Renée Zellweger"]
+alternatives = ["Kate Winslet", "Hugh Grant", "Emma Thompson"]
+hint = "An American actress who adopted a British accent for the role."
+explanation = """
+    Renée Zellweger portrays Bridget Jones.
+    Her performance earned critical acclaim.
+    She became strongly associated with the character.
+"""
+
+[[bridgit_jones.questions]]
+question = "Which of the following actors portray Mark Darcy and Daniel Cleaver?"
+answers = ["Colin Firth", "Hugh Grant"]
+alternatives = ["Jude Law", "Alan Rickman", "Pierce Brosnan"]
+hint = "Both are well-known British actors."
+explanation = """
+    Colin Firth plays Mark Darcy.
+    Hugh Grant plays Daniel Cleaver.
+    Their performances define the romantic dynamic.
+"""
+
+[[bridgit_jones.questions]]
+question = "Which of the following professions apply to Bridget Jones in the first film?"
+answers = ["Publishing assistant", "TV reporter"]
+alternatives = ["Lawyer", "Doctor", "Chef"]
+hint = "She changes career during the film."
+explanation = """
+    Bridget starts as a publishing assistant.
+    She later becomes a TV reporter.
+    Her career shift is part of her personal growth.
+"""
+
+[[bridgit_jones.questions]]
+question = "Who is Mark Darcy’s ex-wife mentioned in the films?"
+answers = ["Natasha"]
+alternatives = ["Rebecca", "Sarah", "Caroline"]
+hint = "She is also connected to Daniel Cleaver."
+explanation = """
+    Natasha is Mark Darcy’s sophisticated ex-wife.
+    She had an affair with Daniel Cleaver.
+    This history fuels tension between the men.
+"""
+
+[[bridgit_jones.questions]]
+question = "Which of the following countries are key settings in 'Bridget Jones: The Edge of Reason'?"
+answers = ["Thailand", "United Kingdom"]
+alternatives = ["France", "Italy", "Spain"]
+hint = "Part of the story involves a prison abroad."
+explanation = """
+    The film is set in the UK and Thailand.
+    Bridget ends up imprisoned in Thailand.
+    The contrast in locations adds to the story.
+"""
+
+[[bridgit_jones.questions]]
+question = "Which of the following characters are part of Bridget’s close friend group?"
+answers = ["Shazza", "Tom"]
+alternatives = ["Natasha", "Mark Darcy", "Daniel Cleaver"]
+hint = "They frequently gather to discuss Bridget’s life."
+explanation = """
+    Shazza and Tom are among Bridget’s closest friends.
+    They offer advice and comic relief.
+    The group dynamic is central to the films.
+"""
+
+[[bridgit_jones.questions]]
+question = "What is the name of the diary Bridget keeps track of in the films?"
+answers = ["Bridget Jones’s Diary"]
+alternatives = ["My Life Log", "Daily Confessions", "London Journal"]
+hint = "It shares the same name as the film."
+explanation = """
+    Bridget records her thoughts in her diary.
+    It tracks her weight, habits, and relationships.
+    The diary format frames the storytelling.
+"""
+
+[[bridgit_jones.questions]]
+question = "Which of the following events happen in the first film?"
+answers = ["Bridget attends a New Year’s party", "She is humiliated at a work event"]
+alternatives = ["She has a baby", "She gets married", "She moves to New York"]
+hint = "Think about awkward and comedic early moments."
+explanation = """
+    The New Year’s party introduces key characters.
+    Bridget also experiences embarrassing work situations.
+    These moments establish the tone of the film.
+"""
+
+[[bridgit_jones.questions]]
+question = "Which of the following misunderstandings occur between Bridget and Mark Darcy in the films?"
+answers = ["Bridget believes Mark dislikes her", "She suspects Mark of infidelity"]
+alternatives = ["Mark forgets her birthday", "Mark moves abroad secretly", "Mark quits his job"]
+hint = "Their relationship is often complicated by miscommunication."
+explanation = """
+    Bridget initially thinks Mark dislikes her.
+    Later, she wrongly suspects him of cheating.
+    Misunderstandings are a recurring theme.
+"""
