@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import random
 import pathlib
+import os
+import platform
 from string import ascii_lowercase
 
 try:
@@ -13,13 +15,15 @@ QUESTIONS_DIR = pathlib.Path(__file__).parent / "questions"  # New: Directory fo
 
 
 def run_quiz():
+    clear_console()
     questions = prepare_questions(QUESTIONS_DIR, num_questions=NUM_QUESTIONS_PER_QUIZ)
 
     num_correct = 0
     for num, question in enumerate(questions, start=1):
         print(f"\n*** Question {num} ***")
-        num_correct += ask_question(question)
-        print(f"You have {num_correct} correct answers.")
+        # num_correct += ask_question(question)
+        num_correct = ask_question(question)
+        # print(f"You have {num_correct} correct answers.")
 
     print(f"\nYou got {num_correct} out of {num} questions.")
 
@@ -48,6 +52,7 @@ def prepare_questions(questions_dir, num_questions):
 
 
 def chosen_quiz_presentation(topic, num_questions):
+    clear_console()
     print("\n******************************************************************")
     print(f"  Ok, you have chosen to be quized in topic: \n  {topic!r}")
     print(f"  The quiz have {num_questions} questions. Are you ready? ")
@@ -65,13 +70,14 @@ def ask_question(question):
         num_choices=len(correct_answers),
         hint=question.get("hint"),
     )
-    point = validate_answers(correct_answers, answers)
+    points = validate_answers(correct_answers, answers)
+    print(f"You have {points} correct answers.")
 
     if "explanation" in question:
         print(f"\nExplanation:\n{question['explanation']}")
     
     input("\nPush 'Enter' button to go to the next question.")
-    return point
+    return points
 
 
 def get_answers(question, alternatives, num_choices=1, hint=None):
@@ -124,9 +130,16 @@ def validate_answers(correct_answers, answers):
     is_or_are = " is" if len(correct_answers) == 1 else "s are"
     print("\n- ".join([f"The answer{is_or_are}:"] + correct_answers))
 
-    # return cumulative points, not just 0/1
+    # return cumulative pointss, not just 0/1
     return validate_answers.total_points
 
+
+def clear_console():
+    """ clear the CommandPrompt/PowerShell """
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 if __name__ == "__main__":
     run_quiz()
