@@ -22,11 +22,25 @@ def run_quiz():
     for num, question in enumerate(questions, start=1):
         print(f"\n*** Question {num} ***")
         # num_correct += ask_question(question)
-        num_correct = ask_question(question)
+        num_questions = len(questions)
+        num_correct = ask_question(question, num_questions=num_questions)
         # print(f"You have {num_correct} correct answers.")
+    
+    # Show result to user
+    if num_correct == 0:
+        print("\nHmmm! Your have certainly space for improvement❗")
+    elif num_correct == num:
+        print("\n⭐⭐⭐ CONGRATULATION ⭐⭐⭐ \n You got all answers correct!\n")
+    else:
+        print(f"\nQuiz is over. \n You got {num_correct} out of {num} questions.\n")
 
-    print(f"\nYou got {num_correct} out of {num} questions.")
+    try_again = input("Would you like to try againg (write y for yes)? ")
+    if try_again.upper() == "Y":
+        run_quiz()
+    else:
+        print("Ok, goodby for now!\n")
 
+TOPIC_LABEL = ""
 
 # preprocessing
 def prepare_questions(questions_dir, num_questions):
@@ -41,25 +55,19 @@ def prepare_questions(questions_dir, num_questions):
     if not topics:
         raise ValueError(f"No question files found in {questions_dir}")
     
-    topic_label = get_answers(
+    global TOPIC_LABEL
+    TOPIC_LABEL = get_answers(
         "Which topic do you want to get quizzed about?",
         alternatives=sorted(topics),
     )[0]
-    questions = topics[topic_label]
+    questions = topics[TOPIC_LABEL]
     num_questions = min(num_questions, len(questions))
-    chosen_quiz_presentation(topic_label, num_questions)
+    chosen_quiz_presentation(TOPIC_LABEL, num_questions)
+    input("\n  Push 'Enter' button to go to the next question.")
     return random.sample(questions, k=num_questions)
 
 
-def chosen_quiz_presentation(topic, num_questions):
-    clear_console()
-    print("\n******************************************************************")
-    print(f"  Ok, you have chosen to be quized in topic: \n  {topic!r}")
-    print(f"  The quiz have {num_questions} questions. Are you ready? ")
-    print("********************************************************************")
-    input("\n  Push 'Enter' button to go to the next question.")
-
-def ask_question(question):
+def ask_question(question, num_questions):
     correct_answers = question["answers"]
     alternatives = question["answers"] + question["alternatives"]
     ordered_alternatives = random.sample(alternatives, k=len(alternatives))
@@ -77,8 +85,17 @@ def ask_question(question):
         print(f"\nExplanation:\n{question['explanation']}")
     
     input("\nPush 'Enter' button to go to the next question.")
+    # clear_console()
+    chosen_quiz_presentation(TOPIC_LABEL, num_questions=num_questions)
     return points
 
+def chosen_quiz_presentation(topic, num_questions):
+    clear_console()
+    print("\n******************************************************************")
+    print(f"  Ok, you have chosen to be quized about: \n  {topic!r}")
+    print(f"  The quiz have {num_questions} questions. Are you ready? ")
+    print("********************************************************************")
+    # input("\n  Push 'Enter' button to go to the next question.")
 
 def get_answers(question, alternatives, num_choices=1, hint=None):
     print(f"{question}? ")
@@ -143,3 +160,5 @@ def clear_console():
 
 if __name__ == "__main__":
     run_quiz()
+    
+# run_quiz()
