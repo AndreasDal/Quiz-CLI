@@ -4,6 +4,8 @@ import pathlib
 import os
 import platform
 from string import ascii_lowercase
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import urllib.parse
 
 try:
     import tomllib
@@ -11,154 +13,145 @@ except ModuleNotFoundError:
     import tomli as tomllib
 
 NUM_QUESTIONS_PER_QUIZ = 5
-QUESTIONS_DIR = pathlib.Path(__file__).parent / "questions"  # New: Directory for question files
+QUESTIONS_DIR = pathlib.Path(__file__).parent / "questions"
 
+# Global state for simplicity (in production, use a database)
+user_sessions = {}  # e.g., {"session_id": {"questions": [...], "current": 0, "score": 0}}
 
-def run_quiz():
-    clear_console()
-    questions = prepare_questions(QUESTIONS_DIR, num_questions=NUM_QUESTIONS_PER_QUIZ)
-
-    num_correct = 0
-    for num, question in enumerate(questions, start=1):
-        print(f"\n*** Question {num} ***")
-        # num_correct += ask_question(question)
-        num_questions = len(questions)
-        num_correct = ask_question(question, num_questions=num_questions)
-        # print(f"You have {num_correct} correct answers.")
-    
-    # Show result to user
-    if num_correct == 0:
-        print("\nHmmm! Your have certainly space for improvement❗")
-    elif num_correct == num:
-        print("\n⭐⭐⭐ CONGRATULATION ⭐⭐⭐ \n You got all answers correct!\n")
-    else:
-        print(f"\nQuiz is over. \n You got {num_correct} out of {num} questions.\n")
-
-    try_again = input("Would you like to try againg (write y for yes)? ")
-    if try_again.upper() == "Y":
-        run_quiz()
-    else:
-        print("Ok, goodby for now!\n")
-
-TOPIC_LABEL = ""
-
-# preprocessing
 def prepare_questions(questions_dir, num_questions):
     topics = {}
     for toml_file in questions_dir.glob("*.toml"):
         topic_info = tomllib.loads(toml_file.read_text(encoding="utf-8"))
-        # Assume each file has one top-level section (e.g., [beverly_hills_90210])
-        # for topic_key, topic_data in topic_info.items():
         for topic_data in topic_info.values():
             topics[topic_data["label"]] = topic_data["questions"]
-    
-    if not topics:
-        raise ValueError(f"No question files found in {questions_dir}")
-    
-    global TOPIC_LABEL
-    TOPIC_LABEL = get_answers(
-        "Which topic do you want to get quizzed about?",
-        alternatives=sorted(topics),
-    )[0]
-    questions = topics[TOPIC_LABEL]
-    num_questions = min(num_questions, len(questions))
-    chosen_quiz_presentation(TOPIC_LABEL, num_questions)
-    input("\n  Push 'Enter' button to go to the next question.")
-    return random.sample(questions, k=num_questions)
+    return topics
 
+class QuizHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/":
+            self.send_start_page()
+        elif self.path.startswith("/quiz"):
+            self.send_quiz_page()
+        else:
+            self.send_error(404)
 
-def ask_question(question, num_questions):
-    correct_answers = question["answers"]
-    alternatives = question["answers"] + question["alternatives"]
-    ordered_alternatives = random.sample(alternatives, k=len(alternatives))
+    def do_POST(self):
+        parsed_path = urllib.parse.urlparse(self.path).path
+        if parsed_path == "/select_topic":
+            self.handle_topic_selection()
+        elif parsed_path == "/answer":
+            self.handle_answer()
+        else:
+            self.send_error(404)
 
-    answers = get_answers(
-        question["question"],
-        ordered_alternatives,
-        num_choices=len(correct_answers),
-        hint=question.get("hint"),
-    )
-    points = validate_answers(correct_answers, answers)
-    print(f"You have {points} correct answers.")
+    def send_start_page(self):
+        topics = prepare_questions(QUESTIONS_DIR, NUM_QUESTIONS_PER_QUIZ)
+        html = f"""
+        <html><body>
+        <h1>Quiz App</h1>
+        <form method="post" action="/select_topic">
+        <label>Choose topic:</label><br>
+        {"".join(f'<input type="radio" name="topic" value="{t}"> {t}<br>' for t in sorted(topics))}
+        <input type="submit" value="Start Quiz">
+        </form>
+        </body></html>
+        """
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(html.encode())
 
-    if "explanation" in question:
-        print(f"\nExplanation:\n{question['explanation']}")
-    
-    input("\nPush 'Enter' button to go to the next question.")
-    # clear_console()
-    chosen_quiz_presentation(TOPIC_LABEL, num_questions=num_questions)
-    return points
-
-def chosen_quiz_presentation(topic, num_questions):
-    clear_console()
-    print("\n******************************************************************")
-    print(f"  Ok, you have chosen to be quized about: \n  {topic!r}")
-    print(f"  The quiz have {num_questions} questions. Are you ready? ")
-    print("********************************************************************")
-    # input("\n  Push 'Enter' button to go to the next question.")
-
-def get_answers(question, alternatives, num_choices=1, hint=None):
-    print(f"{question}? ")
-    labeled_alternatives = dict(zip(ascii_lowercase, alternatives))
-    if hint:
-        labeled_alternatives["?"] = "Hint"
-
-    for label, alternative in labeled_alternatives.items():
-        print(f"   {label}) {alternative}")
-
-    while True:
-        plural_s = "" if num_choices == 1 else f"s (choose {num_choices})"
-        answer = input(f"\nChoice{plural_s}? ")
-        answers = set(answer.replace(",", " ").split())
-
-        # Handle hints
-        if hint and "?" in answers:
-            print(f"\nHint: {hint}")
-            continue
+    def handle_topic_selection(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length).decode()
+        data = urllib.parse.parse_qs(post_data)
+        topic = data['topic'][0]
         
-        # Handle involid andswers
-        if len(answers) != num_choices:
-            plural_s = "" if num_choices == 1 else "s, separated by comma"
-            print(f"Please answer {num_choices} alternative{plural_s}")
-            continue
+        topics = prepare_questions(QUESTIONS_DIR, NUM_QUESTIONS_PER_QUIZ)
+        questions = random.sample(topics[topic], k=min(NUM_QUESTIONS_PER_QUIZ, len(topics[topic])))
+        session_id = "user1"  # Simple: use a fixed ID; in real app, generate unique
+        user_sessions[session_id] = {"questions": questions, "current": 0, "score": 0}
+        
+        self.send_response(302)
+        self.send_header("Location", f"/quiz?session={session_id}")
+        self.end_headers()
 
-        if any((invalid := answer) not in labeled_alternatives for answer in answers):
-            print(
-                f"{invalid!r} is not a valid choice. "
-                f"Please use {', '.join(labeled_alternatives)}"
-            )
-            continue
+    def send_quiz_page(self):
+        query = urllib.parse.urlparse(self.path).query
+        params = urllib.parse.parse_qs(query)
+        session_id = params.get('session', [''])[0]
+        if session_id not in user_sessions:
+            self.send_error(400, "Invalid session")
+            return
+        
+        session = user_sessions[session_id]
+        if session["current"] >= len(session["questions"]):
+            self.send_results_page(session)
+            return
+        
+        question = session["questions"][session["current"]]
+        correct_answers = question["answers"]
+        alternatives = question["answers"] + question["alternatives"]
+        ordered_alternatives = random.sample(alternatives, k=len(alternatives))
+        
+        options = "".join(f'<input type="checkbox" name="answer" value="{alt}"> {alt}<br>' for alt in ordered_alternatives)
+        html = f"""
+        <html><body>
+        <h1>Question {session["current"] + 1}</h1>
+        <p>{question["question"]}</p>
+        <form method="post" action="/answer">
+            <input type="hidden" name="session" value="{session_id}">
+        {options}
+        <input type="submit" value="Submit">
+        </form>
+        </body></html>
+        """
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(html.encode())
 
-        return [labeled_alternatives[answer] for answer in answers]
+    def handle_answer(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length).decode()
+        data = urllib.parse.parse_qs(post_data)
 
+        session_id = data.get('session', [''])[0]
+        if session_id not in user_sessions:
+            self.send_error(400, "Invalid session")
+            return
+        
+        answers = data.get('answer', [])
+        
+        session = user_sessions[session_id]
+        question = session["questions"][session["current"]]
+        correct = set(answers) == set(question["answers"])
+        if correct:
+            session["score"] += 1
+        
+        session["current"] += 1
+        self.send_response(302)
+        self.send_header("Location", f"/quiz?session={session_id}")
+        self.end_headers()
 
-def validate_answers(correct_answers, answers):
-    # Keep a running total of points across calls using function attribute
-    if not hasattr(validate_answers, "total_points"):
-        validate_answers.total_points = 0
+    def send_results_page(self, session):
+        html = f"""
+        <html><body>
+        <h1>Quiz Complete!</h1>
+        <p>You scored {session["score"]} out of {len(session["questions"])}.</p>
+        <a href="/">Try Again</a>
+        </body></html>
+        """
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(html.encode())
 
-    correct = set(answers) == set(correct_answers)
-    if correct:
-        print("\n⭐ Correct ⭐")
-        validate_answers.total_points += 1
-    else:
-        print("\n❗Wrong❗")
-
-    is_or_are = " is" if len(correct_answers) == 1 else "s are"
-    print("\n- ".join([f"The answer{is_or_are}:"] + correct_answers))
-
-    # return cumulative pointss, not just 0/1
-    return validate_answers.total_points
-
-
-def clear_console():
-    """ clear the CommandPrompt/PowerShell """
-    if platform.system() == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
+def run_server():
+    server_address = ('', 8000)
+    httpd = HTTPServer(server_address, QuizHandler)
+    print("Server running at http://localhost:8000")
+    httpd.serve_forever()
 
 if __name__ == "__main__":
-    run_quiz()
-    
-# run_quiz()
+    run_server()
